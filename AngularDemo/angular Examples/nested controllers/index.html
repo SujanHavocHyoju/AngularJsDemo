@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="nestedControllers">
+<head>
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+	<title>Nested Controllers App</title>
+</head>
+<body>
+	<h1>Nested Controllers App</h1>
+
+	<div ng-controller="oneController as C1">
+		<p ng-bind="C1.testProp"></p> <!--<p>{{testProp}}</p>-->
+		<div ng-controller="threeController as C3">
+			<p ng-bind="C3.testProp"></p>
+		</div>
+	</div>
+
+	<div ng-controller="twoController as C2">
+		<p ng-bind="C2.testProp"></p>
+	</div>
+
+	
+
+
+
+<script>
+	
+</script>
+</body>
+</html>

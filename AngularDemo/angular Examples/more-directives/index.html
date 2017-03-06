@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="moreDirectives">
+<head>
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+	<title>More Directives</title>
+</head>
+<body>
+	<h1>More Directives</h1>
+
+	<div ng-controller="moreDirectivesController as ctrl">
+		<input type="checkbox" ng-model="ctrl.checked"></input>
+		<p ng-if="ctrl.checked">ng-if adds/removes the entire element form the DOM</p>
+		<input type="checkbox" ng-model="ctrl.checked1"></input>
+		<p ng-show="ctrl.checked1">ngShow toggles the display only by adding a class css</p>
+		<input type="checkbox" ng-model="ctrl.checked2"></input>
+		<p ng-hide="ctrl.checked2">ngHide toggles the display only by adding a class css</p>
+		<p>Also takes negation by !  example:"!ctrl.checked"</p>
+
+		<p ng-repeat="i in ctrl.myListNumbers">Hello Yo! Can repeat Divs too {{i}}</p>
+		<p ng-repeat="obj in ctrl.myList">{{$index+1}}. Hello {{obj.name}}. You are {{obj.age}} years old.</p>
+	</div>
+ 
+</body>
+</html>

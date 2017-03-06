@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head>
+	<script src="angular.js"></script>
+	<script src="app.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Contact App</title>
+</head>
+<body>
+	
+	<div ng-controller="HeaderController as head">
+		<div class="container" style="text-align:center">
+			<h1>Welcome to {{head.appTitle}}</h1>
+		</div>
+	</div>
+
+
+	<div ng-controller="contactController as ctrl" class="container">
+		<div class="row">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="contact in ctrl.contacts" ng-click="ctrl.selectContact($index)">
+					<span>{{contact.name.first +" "+ contact.name.last}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="media">
+			  <div class="media-left">
+			    <a href="#">
+			      <img src="{{ctrl.selectedContact.picture.medium}}">
+			      <img ng-src="{{ctrl.selectedContact.picture.thumbnail}}">
+			    </a>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading">{{ctrl.selectedContact.name.first +" "+ctrl.selectedContact.name.last}}</h4>
+			    <div>
+			    	<p>
+			    		<h5>Location:</h5>
+			    	</p>
+			    	<p>
+			    		{{ctrl.selectedContact.location.street +" "+ ctrl.selectedContact.location.city +" "+ ctrl.selectedContact.location.state +" "+ctrl.selectedContact.location.postcode}}
+			    	</p>
+			    </div>
+			    <div>
+			    	<p>
+			    		Phone: {{ctrl.selectedContact.phone}} 
+			    	</p>
+			    	<p>
+			    		Cell: {{ctrl.selectedContact.cell}}
+			    	</p>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-controller="FooterController as foot">
+		<div class="container" style="text-align:center">
+		<hr/>
+			<h4>Thanks for Using the {{foot.appTitle}}</h4>
+		</div>
+	</div>
+
+ 
+</body>
+</html>

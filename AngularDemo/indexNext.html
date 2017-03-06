@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head>
+	<script src="angular.js"></script>
+	<script src="myApp.js"></script>
+	<script src="appConfig.service.js"></script>
+	<script src="appname.service.js"></script>
+	<script src="contact.controller.js"></script>
+	<script src="contactdata.service.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Contact App</title>
+</head>
+<body>
+	
+<div style="text-align:center"><h2>Demo Contact App</h2></div>
+	<div ng-controller="contactController as ctrl" class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="contact in ctrl.contacts" ng-click="ctrl.selectContact($index)">
+					<span>{{contact.name.first +" "+ contact.name.last}}</span>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="col-md-6">
+		<div class="alert alert-success" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
+		<div class="alert alert-danger" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
+			<div class="media">
+			  <div class="media-left">
+			  	<a href="#">
+			      <!--<img src="{{ctrl.selectedContact.picture.medium}}">
+			      <img ng-src="{{ctrl.selectedContact.picture.thumbnail}}">-->
+			      <img ng-src="{{ctrl.selectedContact.picture.large}}" ng-hide="ctrl.addMode">
+			    </a>
+			  </div>
+			  <div class="media-body">
+
+			    <h4 class="media-heading" ng-hide="ctrl.editMode">{{ctrl.selectedContact.name.first +" "+ctrl.selectedContact.name.last}}</h4>
+
+			    <p>
+			    <span ng-show="ctrl.editMode">First Name:</span>
+			    <input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.name.first">
+			    </p>
+			    <p>
+			    <span ng-show="ctrl.editMode">Last Name:</span>
+			    <input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.name.last">
+			    </p>
+
+			    <div>
+			    	<p><h5><u>Location</u> </h5></p>
+			    	<p>
+			    		<span>Street: <span>
+			    		<span ng-hide="ctrl.editMode"> {{ctrl.selectedContact.location.street}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.location.street">
+			    	</p>
+			    	<p>
+			    		<span>City: <span>
+			    		<span ng-hide="ctrl.editMode"> {{ctrl.selectedContact.location.city}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.location.city">
+			    	</p>
+			    	<p>
+			    		<span>State: <span>
+			    		<span ng-hide="ctrl.editMode"> {{ctrl.selectedContact.location.state}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.location.state">
+			    	</p>
+			    	<p>
+			    		<span>Post Code: <span>
+			    		<span ng-hide="ctrl.editMode"> {{ctrl.selectedContact.location.postcode}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.location.postcode">
+			    	</p>
+			    </div>
+			    <div>
+			    	<p><h5><u>Contact Info</u></h5></p>
+			    	<p>
+			    		<span>Phone: </span>
+			    		<span ng-hide="ctrl.editMode">{{ctrl.selectedContact.phone}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.phone">
+			    	</p>
+			    	<p>
+			    		<span>Cell: </span>
+			    		<span ng-hide="ctrl.editMode">{{ctrl.selectedContact.cell}}</span>
+			    		<input type="text" ng-show="ctrl.editMode" ng-model="ctrl.selectedContact.cell">
+			    	</p>
+			    </div>
+			    <button ng-click="ctrl.toggleEditMode()" ng-hide="ctrl.editMode" class="btn btn-primary">Edit</button>
+			    <button ng-click="ctrl.saveUser()" ng-show="ctrl.editMode" class="btn btn-success">Save</button>
+			    <button ng-click="ctrl.addContact()" ng-hide="ctrl.editMode" class="btn btn-info">Add Contact</button>
+			  </div>
+
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+ 
+</body>
+</html>
